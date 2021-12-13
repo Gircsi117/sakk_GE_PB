@@ -29,21 +29,24 @@ namespace sakk_GE_PB
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.headerPANEL = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
+            this.headerPANEL.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // headerPANEL
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(3);
-            this.panel1.Size = new System.Drawing.Size(800, 30);
-            this.panel1.TabIndex = 0;
+            this.headerPANEL.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.headerPANEL.Controls.Add(this.button1);
+            this.headerPANEL.Dock = System.Windows.Forms.DockStyle.Top;
+            this.headerPANEL.Location = new System.Drawing.Point(0, 0);
+            this.headerPANEL.Name = "headerPANEL";
+            this.headerPANEL.Padding = new System.Windows.Forms.Padding(3);
+            this.headerPANEL.Size = new System.Drawing.Size(800, 30);
+            this.headerPANEL.TabIndex = 0;
+            this.headerPANEL.MouseDown += new System.Windows.Forms.MouseEventHandler(this.headerPANEL_MouseDown);
+            this.headerPANEL.MouseMove += new System.Windows.Forms.MouseEventHandler(this.headerPANEL_MouseMove);
+            this.headerPANEL.MouseUp += new System.Windows.Forms.MouseEventHandler(this.headerPANEL_MouseUp);
             // 
             // button1
             // 
@@ -62,18 +65,18 @@ namespace sakk_GE_PB
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.headerPANEL);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.panel1.ResumeLayout(false);
+            this.headerPANEL.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel headerPANEL;
         private System.Windows.Forms.Button button1;
     }
 }
