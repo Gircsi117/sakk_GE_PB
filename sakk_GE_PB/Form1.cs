@@ -14,6 +14,7 @@ namespace sakk_GE_PB
     {
         private bool drag = false;
         private Point oldalHely = new Point(0, 0);
+        private Panel[,] jatekter = new Panel[8, 8];
 
         public Form1()
         {
@@ -23,6 +24,7 @@ namespace sakk_GE_PB
         private void Form1_Load(object sender, EventArgs e)
         {
             this.FormBorderStyle = FormBorderStyle.None;
+            tabla_general();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -52,6 +54,35 @@ namespace sakk_GE_PB
             {
                 Point p = PointToScreen(e.Location);
                 Location = new Point(p.X - this.oldalHely.X, p.Y - this.oldalHely.Y);
+            }
+        }
+
+        private void tabla_general()
+        {
+            int szeles = (jatekterPANEL.Width - 24) / 8;
+            int sor = 12;
+            int oszlop = 12;
+            bool szin = true;
+
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    Panel pan = new Panel();
+                    jatekterPANEL.Controls.Add(pan);
+                    pan.Size = new Size(szeles, szeles);
+                    pan.Location = new Point(sor, oszlop);
+                    pan.BackColor = (szin) ? (Color.White) : (Color.Black);
+                    pan.Tag = $"{i};{j}";
+                    szin = !szin;
+
+                    sor += szeles;
+
+                    jatekter[i, j] = pan;
+                }
+                szin = !szin;
+                oszlop += szeles;
+                sor = 12;
             }
         }
     }
