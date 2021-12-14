@@ -14,7 +14,9 @@ namespace sakk_GE_PB
     {
         private bool drag = false;
         private Point oldalHely = new Point(0, 0);
+
         private Panel[,] jatekter = new Panel[8, 8];
+        static List<Babu> leutottek = new List<Babu>() { };
 
         public Form1()
         {
@@ -25,6 +27,7 @@ namespace sakk_GE_PB
         {
             this.FormBorderStyle = FormBorderStyle.None;
             tabla_general();
+            babu_general();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -84,6 +87,11 @@ namespace sakk_GE_PB
                 oszlop += szeles;
                 sor = 12;
             }
+        }
+
+        private void babu_general()
+        {
+
         }
     }
 }
