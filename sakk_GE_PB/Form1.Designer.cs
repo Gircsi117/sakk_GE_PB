@@ -29,6 +29,7 @@ namespace sakk_GE_PB
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.headerPANEL = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.containerPANEL = new System.Windows.Forms.Panel();
@@ -37,6 +38,7 @@ namespace sakk_GE_PB
             this.player1_PANEL = new System.Windows.Forms.Panel();
             this.p1LBL = new System.Windows.Forms.Label();
             this.jatekterPANEL = new System.Windows.Forms.Panel();
+            this.babukIMG = new System.Windows.Forms.ImageList(this.components);
             this.headerPANEL.SuspendLayout();
             this.containerPANEL.SuspendLayout();
             this.player2_PANEL.SuspendLayout();
@@ -129,6 +131,12 @@ namespace sakk_GE_PB
             this.jatekterPANEL.Size = new System.Drawing.Size(577, 577);
             this.jatekterPANEL.TabIndex = 0;
             // 
+            // babukIMG
+            // 
+            this.babukIMG.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.babukIMG.ImageSize = new System.Drawing.Size(200, 200);
+            this.babukIMG.TransparentColor = System.Drawing.Color.Transparent;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -158,6 +166,7 @@ namespace sakk_GE_PB
         private System.Windows.Forms.Panel player1_PANEL;
         private System.Windows.Forms.Label p1LBL;
         private System.Windows.Forms.Panel jatekterPANEL;
+        private System.Windows.Forms.ImageList babukIMG;
     }
 }
 
