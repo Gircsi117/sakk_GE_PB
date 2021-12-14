@@ -102,6 +102,7 @@ namespace sakk_GE_PB
             // player1_PANEL
             // 
             this.player1_PANEL.BackColor = System.Drawing.Color.Black;
+            this.player1_PANEL.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.player1_PANEL.Controls.Add(this.p1LBL);
             this.player1_PANEL.Location = new System.Drawing.Point(104, 15);
             this.player1_PANEL.Name = "player1_PANEL";
