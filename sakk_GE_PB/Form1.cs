@@ -15,8 +15,10 @@ namespace sakk_GE_PB
         private bool drag = false;
         private Point oldalHely = new Point(0, 0);
 
-        private Panel[,] jatekter = new Panel[8, 8];
+        public Panel[,] jatekter = new Panel[8, 8];
         private Babu[,] babuk = new Babu[8, 8];
+
+        private Babu selected;
 
         public Form1()
         {
@@ -88,6 +90,7 @@ namespace sakk_GE_PB
                     pan.Padding = new Padding(3);
                     pan.BackColor = (szin) ? (Color.White) : (Color.Black);
                     pan.Tag = $"{i};{j}";
+                    pan.Click += mozgat;
                     szin = !szin;
 
                     sor += szeles;
@@ -108,7 +111,9 @@ namespace sakk_GE_PB
 
             for (int i = 0; i < 8; i++)
             {
+                //felesleges sorok kihagyása
                 if (i == 2 || i == 3 || i == 4 || i == 5) { continue; }
+                //Bábúk szinének modosítása
                 if (i == 6) { szin = 0; }
                 for (int j = 0; j < 8; j++)
                 {
@@ -137,13 +142,97 @@ namespace sakk_GE_PB
                     pic.BackgroundImage = babukIMG.Images[$"{szin}_{nev}"];
                     pic.BackgroundImageLayout = ImageLayout.Zoom;
                     pic.Tag = $"{i};{j}";
+                    pic.Click += kijelol;
 
                     Babu bab = new Babu(pic, i, j, nev, szin);
                     babuk[i, j] = bab;
                 }
             }
+            
         }
 
+        //panelhez adás
+        private void mozgat(object sender, EventArgs e)
+        {
+            Panel pan = sender as Panel;
+
+            if (pan.BackColor == Color.Yellow)
+            {
+                int sor = Convert.ToInt32(pan.Tag.ToString().Split(';')[0]);
+                int oszlop = Convert.ToInt32(pan.Tag.ToString().Split(';')[1]);
+                pan.Controls.Add(babuk[selected.Sor, selected.Oszlop].Maga);
+
+                babuk[selected.Sor, selected.Oszlop] = null;
+                selected.Sor = sor;
+                selected.Oszlop = oszlop;
+                selected.Maga.Tag = pan.Tag;
+
+                babuk[sor, oszlop] = selected;
+                jatekter[sor, oszlop].Controls.Add(selected.Maga);
+
+            }
+
+            szinez();
+        }
+
+        //bábúkhoz adni, a kijelölt bábú vizsgálata
+        private void kijelol(object sender, EventArgs e)
+        {
+            szinez();
+            PictureBox pic = sender as PictureBox;
+            selected = babuk[Convert.ToInt32(pic.Tag.ToString().Split(';')[0]), Convert.ToInt32(pic.Tag.ToString().Split(';')[1])];
+
+            //MessageBox.Show(selected.Maga.Tag.ToString());
+
+            if (selected.Name != "paraszt")
+            {
+                for (int i = 0; i < selected.Iranyok.Count; i++)
+                {
+                    hely_szinez(selected, selected.Sor, selected.Oszlop, selected.Iranyok[i][0], selected.Iranyok[i][1], selected.Nagylepes);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < selected.Iranyok.Count; i++)
+                {
+                    hely_szinez(selected, selected.Sor, selected.Oszlop, selected.Iranyok[i][0], selected.Iranyok[i][1], selected.Nagylepes, i);
+                }
+
+            }
+        }
+
+        //A bábú helyeinek szinezése
+        private void hely_szinez(Babu select, int sor, int oszlop, int sorIrany, int oszlopIrany, bool nagylepes, int szam = 0)
+        {
+            bool mehete = true;
+
+            if ((sor+sorIrany) < 8 && (sor+sorIrany) >= 0 && (oszlop+oszlopIrany) < 8 && (oszlop + oszlopIrany) >= 0)
+            {
+                if (jatekter[(sor + sorIrany), (oszlop + oszlopIrany)].Controls.Count == 0 && szam == 0)
+                {
+                    jatekter[sor + sorIrany, oszlop + oszlopIrany].BackColor = Color.Yellow;
+                }
+                else if(jatekter[(sor + sorIrany), (oszlop + oszlopIrany)].Controls.Count != 0)
+                {
+                    mehete = false;
+                    if (babuk[sor + sorIrany, oszlop + oszlopIrany].Szin != select.Szin && (select.Name != "paraszt" || szam != 0))
+                    {
+                        jatekter[sor + sorIrany, oszlop + oszlopIrany].BackColor = Color.Red;
+                    }
+                }
+                
+            }
+            else
+            {
+                mehete = false;
+            }
+
+            //Hosszú lépéses bábú esetén rekuzív folytatás
+            if (nagylepes && mehete)
+            {
+                hely_szinez(select, (sor + sorIrany), (oszlop + oszlopIrany), sorIrany, oszlopIrany, true);
+            }
+        }
 
         private void szinez()
         {
