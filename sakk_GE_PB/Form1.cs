@@ -19,6 +19,7 @@ namespace sakk_GE_PB
         private Babu[,] babuk = new Babu[8, 8];
 
         private Babu selected;
+        private int fel = 0;
 
         public Form1()
         {
@@ -170,6 +171,7 @@ namespace sakk_GE_PB
                 babuk[sor, oszlop] = selected;
                 jatekter[sor, oszlop].Controls.Add(selected.Maga);
 
+                felvalt();
             }
 
             szinez();
@@ -178,26 +180,45 @@ namespace sakk_GE_PB
         //bábúkhoz adni, a kijelölt bábú vizsgálata
         private void kijelol(object sender, EventArgs e)
         {
-            szinez();
             PictureBox pic = sender as PictureBox;
-            selected = babuk[Convert.ToInt32(pic.Tag.ToString().Split(';')[0]), Convert.ToInt32(pic.Tag.ToString().Split(';')[1])];
+            int x = Convert.ToInt32(pic.Tag.ToString().Split(';')[0]);
+            int y = Convert.ToInt32(pic.Tag.ToString().Split(';')[1]);
 
-            //MessageBox.Show(selected.Maga.Tag.ToString());
-
-            if (selected.Name != "paraszt")
+            if (babuk[x, y].Szin == fel)
             {
-                for (int i = 0; i < selected.Iranyok.Count; i++)
+                szinez();
+                selected = babuk[x, y];
+
+                if (selected.Name != "paraszt")
                 {
-                    hely_szinez(selected, selected.Sor, selected.Oszlop, selected.Iranyok[i][0], selected.Iranyok[i][1], selected.Nagylepes);
+                    for (int i = 0; i < selected.Iranyok.Count; i++)
+                    {
+                        hely_szinez(selected, selected.Sor, selected.Oszlop, selected.Iranyok[i][0], selected.Iranyok[i][1], selected.Nagylepes);
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < selected.Iranyok.Count; i++)
+                    {
+                        hely_szinez(selected, selected.Sor, selected.Oszlop, selected.Iranyok[i][0], selected.Iranyok[i][1], selected.Nagylepes, i);
+                    }
+
                 }
             }
-            else
+            else if (jatekter[x, y].BackColor == Color.Red)
             {
-                for (int i = 0; i < selected.Iranyok.Count; i++)
-                {
-                    hely_szinez(selected, selected.Sor, selected.Oszlop, selected.Iranyok[i][0], selected.Iranyok[i][1], selected.Nagylepes, i);
-                }
+                jatekter[x, y].Controls.Clear();
 
+                jatekter[x, y].Controls.Add(jatekter[selected.Sor, selected.Oszlop].Controls[0]);
+
+                babuk[selected.Sor, selected.Oszlop] = null;
+                selected.Sor = x;
+                selected.Oszlop = y;
+                selected.Maga.Tag = jatekter[x, y].Tag;
+                babuk[x, y] = selected;
+
+                felvalt();
+                szinez();
             }
         }
 
@@ -247,6 +268,11 @@ namespace sakk_GE_PB
                 }
                 szin = !szin;
             }
+        }
+
+        private void felvalt()
+        {
+            fel = Math.Abs(fel - 1);
         }
     }
 }
