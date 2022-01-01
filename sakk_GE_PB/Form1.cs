@@ -17,7 +17,10 @@ namespace sakk_GE_PB
 
         public Panel[,] jatekter = new Panel[8, 8];
         private Babu[,] babuk = new Babu[8, 8];
+        string[] babu_nevek = new string[6] { "futo", "kiraly", "huszar", "paraszt", "kiralyno", "bastya" };
+        private List<Babu> leutottek = new List<Babu>() { };
 
+        private Form valaszt;
         private Babu selected;
         private int fel = 0;
 
@@ -28,7 +31,6 @@ namespace sakk_GE_PB
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            string[] babu_nevek = new string[] { "futo", "kiraly", "huszar", "paraszt", "kiralyno", "bastya" }; 
 
             for (int i = 0; i < 2; i++)
             {
@@ -171,6 +173,11 @@ namespace sakk_GE_PB
                 babuk[sor, oszlop] = selected;
                 jatekter[sor, oszlop].Controls.Add(selected.Maga);
 
+                if ((sor == 0 && selected.Name == "paraszt") || (sor == 7 && selected.Name == "paraszt"))
+                {
+                    csere();
+                }
+
                 felvalt();
             }
 
@@ -205,8 +212,13 @@ namespace sakk_GE_PB
 
                 }
             }
-            else if (jatekter[x, y].BackColor == Color.Red)
+            else if (jatekter[x, y].BackColor == Color.Red) //Leütés
             {
+                if (babuk[x, y].Name != "paraszt")
+                {
+                    leutottek.Add(babuk[x, y]);
+                }
+                
                 jatekter[x, y].Controls.Clear();
 
                 jatekter[x, y].Controls.Add(jatekter[selected.Sor, selected.Oszlop].Controls[0]);
@@ -217,9 +229,75 @@ namespace sakk_GE_PB
                 selected.Maga.Tag = jatekter[x, y].Tag;
                 babuk[x, y] = selected;
 
+                if ((x == 0 && selected.Name == "paraszt") || (x == 7 && selected.Name == "paraszt"))
+                {
+                    csere();
+                }
+
                 felvalt();
                 szinez();
             }
+        }
+
+        private void csere()
+        {
+            valaszt = new Form();
+            valaszt.Size = new Size(500, 250);
+            valaszt.StartPosition = FormStartPosition.CenterScreen;
+            valaszt.BackColor = Color.FromArgb(255, 128, 0);
+            valaszt.FormBorderStyle = FormBorderStyle.None;
+            valaszt.MaximizeBox = false;
+            valaszt.MinimizeBox = false;
+
+            List<Babu> kello = leutottek.FindAll(x => x.Szin == fel);
+            kello.OrderBy(x => x.Name);
+            var elemek = from elem in kello group elem by elem.Name;
+
+            if (kello.Count > 0)
+            {
+                valaszt.Size = new Size(elemek.Count() * 100, 100);
+
+                int x = 0;
+
+                for (int i = 0; i < elemek.Count(); i++)
+                {
+                    PictureBox pic = new PictureBox();
+                    pic.Size = new Size(100, 100);
+                    pic.BackgroundImage = babukIMG.Images[$"{fel}_{elemek.ToList()[i].Key}"];
+                    pic.Tag = $"{fel}_{elemek.ToList()[i].Key}";
+                    pic.BackgroundImageLayout = ImageLayout.Zoom;
+                    valaszt.Controls.Add(pic);
+                    pic.Location = new Point(x, 0);
+
+                    pic.Click += kicserel;
+                    
+
+                    x += pic.Width;
+                }
+
+                valaszt.ShowDialog();
+            }
+        }
+
+        private void kicserel(object sender, EventArgs e)
+        {
+            PictureBox pic = sender as PictureBox;
+            int szin = Convert.ToInt32(pic.Tag.ToString().Split('_')[0]);
+            string nev = pic.Tag.ToString().Split('_')[1];
+
+            Babu csere = leutottek.Find(x => x.Szin == szin && x.Name == nev);
+            leutottek.Remove(csere);
+
+            csere.Sor = selected.Sor;
+            csere.Oszlop = selected.Oszlop;
+
+            babuk[csere.Sor, csere.Oszlop].Name = csere.Name;
+            babuk[csere.Sor, csere.Oszlop].Iranyok = csere.Iranyok;
+            babuk[csere.Sor, csere.Oszlop].Nagylepes = csere.Nagylepes;
+            jatekter[csere.Sor, csere.Oszlop].Controls[0].BackgroundImage = babukIMG.Images[$"{szin}_{nev}"];
+            babuk[csere.Sor, csere.Oszlop].Maga.BackgroundImage = babukIMG.Images[$"{szin}_{nev}"];
+
+            valaszt.Close();
         }
 
         //A bábú helyeinek szinezése
