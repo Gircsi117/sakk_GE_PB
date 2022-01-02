@@ -39,6 +39,8 @@ namespace sakk_GE_PB
             this.p1LBL = new System.Windows.Forms.Label();
             this.jatekterPANEL = new System.Windows.Forms.Panel();
             this.babukIMG = new System.Windows.Forms.ImageList(this.components);
+            this.ujrainditBtn = new System.Windows.Forms.Button();
+            this.feladBtn = new System.Windows.Forms.Button();
             this.headerPANEL.SuspendLayout();
             this.containerPANEL.SuspendLayout();
             this.player2_PANEL.SuspendLayout();
@@ -73,6 +75,8 @@ namespace sakk_GE_PB
             // containerPANEL
             // 
             this.containerPANEL.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
+            this.containerPANEL.Controls.Add(this.feladBtn);
+            this.containerPANEL.Controls.Add(this.ujrainditBtn);
             this.containerPANEL.Controls.Add(this.player2_PANEL);
             this.containerPANEL.Controls.Add(this.player1_PANEL);
             this.containerPANEL.Controls.Add(this.jatekterPANEL);
@@ -85,7 +89,7 @@ namespace sakk_GE_PB
             // 
             this.player2_PANEL.BackColor = System.Drawing.Color.White;
             this.player2_PANEL.Controls.Add(this.p2LBL);
-            this.player2_PANEL.Location = new System.Drawing.Point(424, 15);
+            this.player2_PANEL.Location = new System.Drawing.Point(500, 15);
             this.player2_PANEL.Name = "player2_PANEL";
             this.player2_PANEL.Size = new System.Drawing.Size(117, 48);
             this.player2_PANEL.TabIndex = 2;
@@ -98,7 +102,7 @@ namespace sakk_GE_PB
             this.p2LBL.Name = "p2LBL";
             this.p2LBL.Size = new System.Drawing.Size(82, 32);
             this.p2LBL.TabIndex = 4;
-            this.p2LBL.Text = "label2";
+            this.p2LBL.Text = "Player2";
             this.p2LBL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // player1_PANEL
@@ -106,7 +110,7 @@ namespace sakk_GE_PB
             this.player1_PANEL.BackColor = System.Drawing.Color.Black;
             this.player1_PANEL.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.player1_PANEL.Controls.Add(this.p1LBL);
-            this.player1_PANEL.Location = new System.Drawing.Point(104, 15);
+            this.player1_PANEL.Location = new System.Drawing.Point(40, 15);
             this.player1_PANEL.Name = "player1_PANEL";
             this.player1_PANEL.Size = new System.Drawing.Size(117, 48);
             this.player1_PANEL.TabIndex = 1;
@@ -120,7 +124,7 @@ namespace sakk_GE_PB
             this.p1LBL.Name = "p1LBL";
             this.p1LBL.Size = new System.Drawing.Size(82, 32);
             this.p1LBL.TabIndex = 5;
-            this.p1LBL.Text = "label1";
+            this.p1LBL.Text = "Player1";
             this.p1LBL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // jatekterPANEL
@@ -136,6 +140,24 @@ namespace sakk_GE_PB
             this.babukIMG.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
             this.babukIMG.ImageSize = new System.Drawing.Size(200, 200);
             this.babukIMG.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // ujrainditBtn
+            // 
+            this.ujrainditBtn.Location = new System.Drawing.Point(222, 28);
+            this.ujrainditBtn.Name = "ujrainditBtn";
+            this.ujrainditBtn.Size = new System.Drawing.Size(75, 23);
+            this.ujrainditBtn.TabIndex = 3;
+            this.ujrainditBtn.Text = "Újraindítás";
+            this.ujrainditBtn.UseVisualStyleBackColor = true;
+            // 
+            // feladBtn
+            // 
+            this.feladBtn.Location = new System.Drawing.Point(358, 28);
+            this.feladBtn.Name = "feladBtn";
+            this.feladBtn.Size = new System.Drawing.Size(75, 23);
+            this.feladBtn.TabIndex = 4;
+            this.feladBtn.Text = "Feladás";
+            this.feladBtn.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -167,6 +189,8 @@ namespace sakk_GE_PB
         private System.Windows.Forms.Label p1LBL;
         private System.Windows.Forms.Panel jatekterPANEL;
         private System.Windows.Forms.ImageList babukIMG;
+        private System.Windows.Forms.Button feladBtn;
+        private System.Windows.Forms.Button ujrainditBtn;
     }
 }
 
