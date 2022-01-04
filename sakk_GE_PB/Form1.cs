@@ -23,7 +23,6 @@ namespace sakk_GE_PB
         private Form valaszt;
         private Babu selected;
         private int fel = 0;
-        private bool vizsgalhate = true;
 
         public Form1()
         {
@@ -63,7 +62,7 @@ namespace sakk_GE_PB
             if (this.WindowState != FormWindowState.Maximized && this.Location.Y <= 0)
             {
                 this.WindowState = FormWindowState.Maximized;
-                
+
             }
         }
 
@@ -152,7 +151,7 @@ namespace sakk_GE_PB
                     babuk[i, j] = bab;
                 }
             }
-            
+
         }
 
         //panelhez adás
@@ -180,12 +179,11 @@ namespace sakk_GE_PB
                     csere();
                 }
 
-                sakkvizsgal();
                 felvalt();
             }
 
             szinez();
-            kiraly_jelez();
+            sakkvizsgal();
         }
 
         //bábúkhoz adni, a kijelölt bábú vizsgálata
@@ -215,7 +213,7 @@ namespace sakk_GE_PB
                     }
                     if (selected.Status)
                     {
-                        hely_szinez(selected, selected.Sor, selected.Oszlop, selected.Iranyok[0][0]*2, selected.Iranyok[0][1]*2, selected.Nagylepes, 0);
+                        hely_szinez(selected, selected.Sor, selected.Oszlop, selected.Iranyok[0][0] * 2, selected.Iranyok[0][1] * 2, selected.Nagylepes, 0);
                     }
 
                 }
@@ -226,7 +224,7 @@ namespace sakk_GE_PB
                 {
                     leutottek.Add(babuk[x, y]);
                 }
-                
+
                 jatekter[x, y].Controls.Clear();
 
                 jatekter[x, y].Controls.Add(jatekter[selected.Sor, selected.Oszlop].Controls[0]);
@@ -243,22 +241,19 @@ namespace sakk_GE_PB
                     csere();
                 }
 
-                sakkvizsgal();
                 felvalt();
                 szinez();
-                kiraly_jelez();
+                sakkvizsgal();
             }
         }
 
         private void sakkvizsgal()
         {
-            vizsgalhate = true;
-
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    if (vizsgalhate && babuk[i, j] != null && babuk[i, j].Szin == fel)
+                    if (babuk[i, j] != null)
                     {
                         if (babuk[i, j].Name != "paraszt")
                         {
@@ -279,10 +274,6 @@ namespace sakk_GE_PB
                             }
 
                         }
-                    }
-                    else
-                    {
-                        continue;
                     }
                 }
             }
@@ -307,7 +298,6 @@ namespace sakk_GE_PB
                         {
                             //MessageBox.Show("Veszéééééééééééély");
                             jatekter[sor + sorIrany, oszlop + oszlopIrany].BackColor = Color.OrangeRed;
-                            vizsgalhate = false;
                         }
                     }
                 }
@@ -321,28 +311,7 @@ namespace sakk_GE_PB
             //Hosszú lépéses bábú esetén rekuzív folytatás
             if (nagylepes && mehete)
             {
-                hely_szinez(select, (sor + sorIrany), (oszlop + oszlopIrany), sorIrany, oszlopIrany, true);
-            }
-        }
-
-        private void kiraly_jelez()
-        {
-            if (!vizsgalhate)
-            {
-                for (int i = 0; i < 8; i++)
-                {
-                    for (int j = 0; j < 8; j++)
-                    {
-                        if (babuk[i, j] != null && babuk[i, j].Szin == fel && babuk[i, j].Name == "kiraly")
-                        {
-                            jatekter[i, j].BackColor = Color.OrangeRed;
-                        }
-                        else
-                        {
-                            continue;
-                        }
-                    }
-                }
+                kiraly_veszely(select, (sor + sorIrany), (oszlop + oszlopIrany), sorIrany, oszlopIrany, true);
             }
         }
 
@@ -377,7 +346,7 @@ namespace sakk_GE_PB
                     pic.Location = new Point(x, 0);
 
                     pic.Click += kicserel;
-                    
+
 
                     x += pic.Width;
                 }
@@ -412,13 +381,13 @@ namespace sakk_GE_PB
         {
             bool mehete = true;
 
-            if ((sor+sorIrany) < 8 && (sor+sorIrany) >= 0 && (oszlop+oszlopIrany) < 8 && (oszlop + oszlopIrany) >= 0)
+            if ((sor + sorIrany) < 8 && (sor + sorIrany) >= 0 && (oszlop + oszlopIrany) < 8 && (oszlop + oszlopIrany) >= 0)
             {
                 if (jatekter[(sor + sorIrany), (oszlop + oszlopIrany)].Controls.Count == 0 && szam == 0)
                 {
                     jatekter[sor + sorIrany, oszlop + oszlopIrany].BackColor = Color.Yellow;
                 }
-                else if(jatekter[(sor + sorIrany), (oszlop + oszlopIrany)].Controls.Count != 0)
+                else if (jatekter[(sor + sorIrany), (oszlop + oszlopIrany)].Controls.Count != 0)
                 {
                     mehete = false;
                     if (babuk[sor + sorIrany, oszlop + oszlopIrany].Szin != select.Szin && (select.Name != "paraszt" || szam != 0))
@@ -426,7 +395,6 @@ namespace sakk_GE_PB
                         jatekter[sor + sorIrany, oszlop + oszlopIrany].BackColor = Color.Red;
                     }
                 }
-                
             }
             else
             {
