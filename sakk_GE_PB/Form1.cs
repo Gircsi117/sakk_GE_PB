@@ -87,6 +87,7 @@ namespace sakk_GE_PB
                 MessageBox.Show($"{fel} gyozott");
                 babu_letorol();
                 babu_general();
+                szinez();
                 fel = 0;
             }
             if (Result == DialogResult.No)
