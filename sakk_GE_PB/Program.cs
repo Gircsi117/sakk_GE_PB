@@ -17,6 +17,13 @@ namespace sakk_GE_PB
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+
+            
         }
+    }
+
+    public class global
+    {
+        public static string nev1, nev2 = "";
     }
 }

@@ -45,6 +45,7 @@ namespace sakk_GE_PB
             babu_general();
         }
 
+
         private void button1_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -72,6 +73,25 @@ namespace sakk_GE_PB
             {
                 Point p = PointToScreen(e.Location);
                 Location = new Point(p.X - this.oldalHely.X, p.Y - this.oldalHely.Y);
+            }
+        }
+
+        private void feladBtn_Click(object sender, EventArgs e)
+        {
+
+            DialogResult Result = MessageBox.Show($"{fel} feladod?", "", MessageBoxButtons.YesNo);
+
+            if (Result == DialogResult.Yes)
+            {
+                felvalt();
+                MessageBox.Show($"{fel} gyozott");
+                babu_letorol();
+                babu_general();
+                fel = 0;
+            }
+            if (Result == DialogResult.No)
+            {
+                return;
             }
         }
 
@@ -151,7 +171,20 @@ namespace sakk_GE_PB
                     babuk[i, j] = bab;
                 }
             }
-            
+        }
+
+        private void babu_letorol()
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if(jatekter[i, j].Controls.Count != 0)
+                    {
+                        jatekter[i, j].Controls.Clear();
+                    }
+                }
+            }
         }
 
         //panelhez adás

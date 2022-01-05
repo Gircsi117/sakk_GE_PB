@@ -39,7 +39,6 @@ namespace sakk_GE_PB
             this.p1LBL = new System.Windows.Forms.Label();
             this.jatekterPANEL = new System.Windows.Forms.Panel();
             this.babukIMG = new System.Windows.Forms.ImageList(this.components);
-            this.ujrainditBtn = new System.Windows.Forms.Button();
             this.feladBtn = new System.Windows.Forms.Button();
             this.headerPANEL.SuspendLayout();
             this.containerPANEL.SuspendLayout();
@@ -76,7 +75,6 @@ namespace sakk_GE_PB
             // 
             this.containerPANEL.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
             this.containerPANEL.Controls.Add(this.feladBtn);
-            this.containerPANEL.Controls.Add(this.ujrainditBtn);
             this.containerPANEL.Controls.Add(this.player2_PANEL);
             this.containerPANEL.Controls.Add(this.player1_PANEL);
             this.containerPANEL.Controls.Add(this.jatekterPANEL);
@@ -141,23 +139,15 @@ namespace sakk_GE_PB
             this.babukIMG.ImageSize = new System.Drawing.Size(200, 200);
             this.babukIMG.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // ujrainditBtn
-            // 
-            this.ujrainditBtn.Location = new System.Drawing.Point(222, 28);
-            this.ujrainditBtn.Name = "ujrainditBtn";
-            this.ujrainditBtn.Size = new System.Drawing.Size(75, 23);
-            this.ujrainditBtn.TabIndex = 3;
-            this.ujrainditBtn.Text = "Újraindítás";
-            this.ujrainditBtn.UseVisualStyleBackColor = true;
-            // 
             // feladBtn
             // 
-            this.feladBtn.Location = new System.Drawing.Point(358, 28);
+            this.feladBtn.Location = new System.Drawing.Point(287, 28);
             this.feladBtn.Name = "feladBtn";
             this.feladBtn.Size = new System.Drawing.Size(75, 23);
-            this.feladBtn.TabIndex = 4;
+            this.feladBtn.TabIndex = 5;
             this.feladBtn.Text = "Feladás";
             this.feladBtn.UseVisualStyleBackColor = true;
+            this.feladBtn.Click += new System.EventHandler(this.feladBtn_Click);
             // 
             // Form1
             // 
@@ -190,7 +180,6 @@ namespace sakk_GE_PB
         private System.Windows.Forms.Panel jatekterPANEL;
         private System.Windows.Forms.ImageList babukIMG;
         private System.Windows.Forms.Button feladBtn;
-        private System.Windows.Forms.Button ujrainditBtn;
     }
 }
 
