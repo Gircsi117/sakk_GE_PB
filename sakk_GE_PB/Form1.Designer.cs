@@ -33,13 +33,14 @@ namespace sakk_GE_PB
             this.headerPANEL = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.containerPANEL = new System.Windows.Forms.Panel();
+            this.feladBtn = new System.Windows.Forms.Button();
             this.player2_PANEL = new System.Windows.Forms.Panel();
             this.p2LBL = new System.Windows.Forms.Label();
             this.player1_PANEL = new System.Windows.Forms.Panel();
             this.p1LBL = new System.Windows.Forms.Label();
             this.jatekterPANEL = new System.Windows.Forms.Panel();
             this.babukIMG = new System.Windows.Forms.ImageList(this.components);
-            this.feladBtn = new System.Windows.Forms.Button();
+            this.menu1 = new sakk_GE_PB.Menu();
             this.headerPANEL.SuspendLayout();
             this.containerPANEL.SuspendLayout();
             this.player2_PANEL.SuspendLayout();
@@ -82,6 +83,16 @@ namespace sakk_GE_PB
             this.containerPANEL.Name = "containerPANEL";
             this.containerPANEL.Size = new System.Drawing.Size(655, 675);
             this.containerPANEL.TabIndex = 2;
+            // 
+            // feladBtn
+            // 
+            this.feladBtn.Location = new System.Drawing.Point(287, 28);
+            this.feladBtn.Name = "feladBtn";
+            this.feladBtn.Size = new System.Drawing.Size(75, 23);
+            this.feladBtn.TabIndex = 5;
+            this.feladBtn.Text = "Feladás";
+            this.feladBtn.UseVisualStyleBackColor = true;
+            this.feladBtn.Click += new System.EventHandler(this.feladBtn_Click);
             // 
             // player2_PANEL
             // 
@@ -139,22 +150,24 @@ namespace sakk_GE_PB
             this.babukIMG.ImageSize = new System.Drawing.Size(200, 200);
             this.babukIMG.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // feladBtn
+            // menu1
             // 
-            this.feladBtn.Location = new System.Drawing.Point(287, 28);
-            this.feladBtn.Name = "feladBtn";
-            this.feladBtn.Size = new System.Drawing.Size(75, 23);
-            this.feladBtn.TabIndex = 5;
-            this.feladBtn.Text = "Feladás";
-            this.feladBtn.UseVisualStyleBackColor = true;
-            this.feladBtn.Click += new System.EventHandler(this.feladBtn_Click);
+            this.menu1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
+            this.menu1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.menu1.Location = new System.Drawing.Point(0, 30);
+            this.menu1.MaximumSize = new System.Drawing.Size(940, 790);
+            this.menu1.MinimumSize = new System.Drawing.Size(940, 790);
+            this.menu1.Name = "menu1";
+            this.menu1.Size = new System.Drawing.Size(940, 790);
+            this.menu1.TabIndex = 3;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
-            this.ClientSize = new System.Drawing.Size(924, 749);
+            this.ClientSize = new System.Drawing.Size(924, 751);
+            this.Controls.Add(this.menu1);
             this.Controls.Add(this.containerPANEL);
             this.Controls.Add(this.headerPANEL);
             this.Name = "Form1";
@@ -180,6 +193,7 @@ namespace sakk_GE_PB
         private System.Windows.Forms.Panel jatekterPANEL;
         private System.Windows.Forms.ImageList babukIMG;
         private System.Windows.Forms.Button feladBtn;
+        private Menu menu1;
     }
 }
 

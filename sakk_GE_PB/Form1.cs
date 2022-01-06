@@ -12,6 +12,8 @@ namespace sakk_GE_PB
 {
     public partial class Form1 : Form
     {
+        
+
         private bool drag = false;
         private Point oldalHely = new Point(0, 0);
 
