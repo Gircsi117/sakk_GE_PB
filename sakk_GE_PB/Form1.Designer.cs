@@ -74,7 +74,7 @@ namespace sakk_GE_PB
             // 
             // containerPANEL
             // 
-            this.containerPANEL.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
+            this.containerPANEL.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
             this.containerPANEL.Controls.Add(this.feladBtn);
             this.containerPANEL.Controls.Add(this.player2_PANEL);
             this.containerPANEL.Controls.Add(this.player1_PANEL);
@@ -86,9 +86,9 @@ namespace sakk_GE_PB
             // 
             // feladBtn
             // 
-            this.feladBtn.Location = new System.Drawing.Point(287, 28);
+            this.feladBtn.Location = new System.Drawing.Point(282, 24);
             this.feladBtn.Name = "feladBtn";
-            this.feladBtn.Size = new System.Drawing.Size(75, 23);
+            this.feladBtn.Size = new System.Drawing.Size(90, 35);
             this.feladBtn.TabIndex = 5;
             this.feladBtn.Text = "Feladás";
             this.feladBtn.UseVisualStyleBackColor = true;
@@ -107,9 +107,10 @@ namespace sakk_GE_PB
             // 
             this.p2LBL.BackColor = System.Drawing.Color.White;
             this.p2LBL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.p2LBL.Location = new System.Drawing.Point(19, 7);
+            this.p2LBL.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.p2LBL.Location = new System.Drawing.Point(3, 7);
             this.p2LBL.Name = "p2LBL";
-            this.p2LBL.Size = new System.Drawing.Size(82, 32);
+            this.p2LBL.Size = new System.Drawing.Size(114, 32);
             this.p2LBL.TabIndex = 4;
             this.p2LBL.Text = "Player2";
             this.p2LBL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -128,10 +129,11 @@ namespace sakk_GE_PB
             // 
             this.p1LBL.BackColor = System.Drawing.Color.Black;
             this.p1LBL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.p1LBL.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.p1LBL.ForeColor = System.Drawing.Color.White;
-            this.p1LBL.Location = new System.Drawing.Point(16, 7);
+            this.p1LBL.Location = new System.Drawing.Point(3, 6);
             this.p1LBL.Name = "p1LBL";
-            this.p1LBL.Size = new System.Drawing.Size(82, 32);
+            this.p1LBL.Size = new System.Drawing.Size(109, 32);
             this.p1LBL.TabIndex = 5;
             this.p1LBL.Text = "Player1";
             this.p1LBL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -160,6 +162,7 @@ namespace sakk_GE_PB
             this.menu1.Name = "menu1";
             this.menu1.Size = new System.Drawing.Size(940, 790);
             this.menu1.TabIndex = 3;
+            this.menu1.Load += new System.EventHandler(this.menu1_Load);
             // 
             // Form1
             // 

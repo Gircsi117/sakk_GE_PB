@@ -21,6 +21,8 @@ namespace sakk_GE_PB
         private Babu[,] babuk = new Babu[8, 8];
         string[] babu_nevek = new string[6] { "futo", "kiraly", "huszar", "paraszt", "kiralyno", "bastya" };
         private List<Babu> leutottek = new List<Babu>() { };
+        public static int[] szin1 = new int[3] { 255, 128, 0 };
+        public static int[] szin2 = new int[3] { 0, 0, 0 };
 
         private Form valaszt;
         private Babu selected;
@@ -33,7 +35,6 @@ namespace sakk_GE_PB
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
             for (int i = 0; i < 2; i++)
             {
                 for (int j = 0; j < babu_nevek.Length; j++)
@@ -41,10 +42,12 @@ namespace sakk_GE_PB
                     babukIMG.Images.Add($"{i}_{babu_nevek[j]}", Image.FromFile($"../../Images/{i}_{babu_nevek[j]}.png"));
                 }
             }
-
             this.FormBorderStyle = FormBorderStyle.None;
+            global.nev1 = p1LBL;
+            global.nev2 = p2LBL;
             tabla_general();
             babu_general();
+            feladBtn_style();
         }
 
 
@@ -80,13 +83,25 @@ namespace sakk_GE_PB
 
         private void feladBtn_Click(object sender, EventArgs e)
         {
+            string seged1, seged2 = "";
+            if (fel == 0)
+            {
+                seged1 = Convert.ToString(global.nev1.Text);
+                seged2 = Convert.ToString(global.nev2.Text);
+            }
+            else
+            {
+                seged1 = Convert.ToString(global.nev2.Text);
+                seged2 = Convert.ToString(global.nev1.Text);
+            }
 
-            DialogResult Result = MessageBox.Show($"{fel} feladod?", "", MessageBoxButtons.YesNo);
+
+            DialogResult Result = MessageBox.Show($"{seged1} feladod?", "", MessageBoxButtons.YesNo);
 
             if (Result == DialogResult.Yes)
             {
                 felvalt();
-                MessageBox.Show($"{fel} gyozott");
+                MessageBox.Show($"{seged2} gyozott");
                 babu_letorol();
                 babu_general();
                 szinez();
@@ -188,6 +203,33 @@ namespace sakk_GE_PB
                     }
                 }
             }
+        }
+
+        private void feladBtn_style()
+        {
+            feladBtn.FlatStyle = FlatStyle.Flat;
+            feladBtn.FlatAppearance.BorderColor = Color.FromArgb(szin1[0], szin1[1], szin1[2]);
+            feladBtn.FlatAppearance.BorderSize = 3;
+            feladBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(szin2[0], szin2[1], szin2[2]);
+            feladBtn.ForeColor = Color.FromArgb(szin2[0], szin2[1], szin2[2]);
+            feladBtn.BackColor = Color.FromArgb(szin1[0], szin1[1], szin1[2]);
+            feladBtn.Font = new Font("Arial", 12);
+            feladBtn.MouseEnter += erint;
+            feladBtn.MouseLeave += elhagy;
+            feladBtn.Cursor = Cursors.Hand;
+        }
+
+        public static void erint(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            btn.ForeColor = Color.FromArgb(szin1[0], szin1[1], szin1[2]);
+            btn.BackColor = Color.FromArgb(szin2[0], szin2[1], szin2[2]);
+        }
+        public static void elhagy(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            btn.ForeColor = Color.FromArgb(szin2[0], szin2[1], szin2[2]);
+            btn.BackColor = Color.FromArgb(szin1[0], szin1[1], szin1[2]);
         }
 
         //panelhez adás
@@ -462,6 +504,21 @@ namespace sakk_GE_PB
         private void felvalt()
         {
             fel = Math.Abs(fel - 1);
+            if (fel == 0)
+            {
+                player1_PANEL.BorderStyle = BorderStyle.Fixed3D;
+                player2_PANEL.BorderStyle = BorderStyle.None;
+            }
+            else
+            {
+                player2_PANEL.BorderStyle = BorderStyle.Fixed3D;
+                player1_PANEL.BorderStyle = BorderStyle.None;
+            }
+        }
+
+        private void menu1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
