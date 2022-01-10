@@ -24,6 +24,7 @@ namespace sakk_GE_PB
 
     public class global
     {
-        public static string nev1, nev2 = "";
+        public static Label nev1;
+        public static Label nev2;
     }
 }

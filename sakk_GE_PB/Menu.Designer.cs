@@ -57,6 +57,7 @@ namespace sakk_GE_PB
             this.startBtn.TabIndex = 3;
             this.startBtn.Text = "Start";
             this.startBtn.UseVisualStyleBackColor = true;
+            this.startBtn.Click += new System.EventHandler(this.startBtn_Click);
             // 
             // infoBtn
             // 
@@ -66,6 +67,7 @@ namespace sakk_GE_PB
             this.infoBtn.TabIndex = 4;
             this.infoBtn.Text = "Info";
             this.infoBtn.UseVisualStyleBackColor = true;
+            this.infoBtn.Click += new System.EventHandler(this.infoBtn_Click);
             // 
             // exitBtn
             // 
@@ -75,6 +77,7 @@ namespace sakk_GE_PB
             this.exitBtn.TabIndex = 5;
             this.exitBtn.Text = "Exit";
             this.exitBtn.UseVisualStyleBackColor = true;
+            this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
             // 
             // p1TBOX
             // 
